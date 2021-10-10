@@ -15,12 +15,6 @@ const ExpenseForm = (props) => {
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
 
-    //this version is not recommended
-    // setUserInput({
-    //   ...userInput,
-    //   enteredTitle: event.target.value,
-    // });
-
     //this version is good when you depend on previos states
     // setUserInput((prevState) => {
     //   return { ...prevState, enteredTitle: event.target.value };
@@ -45,7 +39,7 @@ const ExpenseForm = (props) => {
     event.preventDefault(); //when submitting a form normally a request is sent to the server
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     props.onSaveExpenseData(expenseData);
@@ -59,7 +53,7 @@ const ExpenseForm = (props) => {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
-  }
+  };
 
   return (
     <form onSubmit={submitHandler} onReset={resetHandler}>
